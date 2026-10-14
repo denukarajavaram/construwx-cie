@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "cie-app",
+	"name": "construwx-cie",
 	"compatibility_date": "2026-08-29",
 	"main": "vinext/server/fetch-handler",
 	"assets": {
@@ -23,10 +23,16 @@
 	},
 	"upload_source_maps": true,
 	"d1_databases": [
+		// {
+		// 	"binding": "DB",
+		// 	"database_name": "cie-local",
+		// 	"database_id": "00000000-0000-0000-0000-000000000000",
+		// 	"migrations_dir": "lib/db/migrations"
+		// },
 		{
 			"binding": "DB",
-			"database_name": "cie-local",
-			"database_id": "00000000-0000-0000-0000-000000000000",
+			"database_name": "cie-production",
+			"database_id": "5b2c3d0f-2cdf-4c78-a1b4-7d1396db9cba",
 			"migrations_dir": "lib/db/migrations"
 		}
 	]

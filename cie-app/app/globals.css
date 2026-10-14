@@ -15,3 +15,292 @@ body {
 a {
   color: inherit;
 }
+
+.roles-page {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.roles-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.roles-header h1,
+.roles-header p {
+  margin: 0;
+}
+
+.roles-header p {
+  margin-top: 0.4rem;
+  color: #6b7280;
+}
+
+.add-role-link {
+  flex-shrink: 0;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  background: #680c5a;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.edit-role-link {
+  display: inline-block;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #680c5a;
+  border-radius: 0.45rem;
+  color: #680c5a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.edit-role-link:hover {
+  background: #f8eef6;
+}
+
+.role-form-page {
+  width: min(680px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.role-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.role-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.role-form input,
+.role-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font: inherit;
+}
+
+.role-form textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.role-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.role-form button {
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: #680c5a;
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.role-form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.form-page-header,
+.section-heading,
+.skill-card-header,
+.competencies-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-page-header {
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.form-page-header h1,
+.form-page-header p,
+.form-section h2,
+.section-heading p,
+.empty-skills p {
+  margin: 0;
+}
+
+.form-page-header p,
+.section-heading p,
+.competencies-heading span {
+  margin-top: 0.35rem;
+  color: #6b7280;
+}
+
+.form-section {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background: white;
+}
+
+.role-form .secondary-button,
+.role-form .add-competency-button {
+  border: 1px solid #680c5a;
+  background: white;
+  color: #680c5a;
+}
+
+.role-form .add-skill-button {
+  width: 100%;
+  padding: 0.9rem;
+  border-style: dashed;
+}
+
+.skills-list,
+.competency-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.skill-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid #ddd6e0;
+  border-radius: 0.65rem;
+  background: #fcf9fb;
+}
+
+.skill-number {
+  color: #680c5a;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.role-form .danger-link,
+.role-form .icon-button {
+  padding: 0;
+  background: transparent;
+  color: #b91c1c;
+}
+
+.role-form .danger-link {
+  font-size: 0.875rem;
+}
+
+.competencies-heading span {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.competency-row {
+  display: grid;
+  grid-template-columns: auto 1fr 2rem;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.role-form .icon-button {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.4rem;
+}
+
+.empty-skills {
+  padding: 2rem;
+  border: 1px dashed #c4b5c0;
+  border-radius: 0.65rem;
+  text-align: center;
+}
+
+.empty-skills button {
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .form-page-header,
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .form-section,
+  .skill-card {
+    padding: 1rem;
+  }
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th,
+td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f9fafb;
+  color: #374151;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.role-skills-summary {
+  display: grid;
+  gap: 0.8rem;
+  min-width: 260px;
+}
+
+.role-skill-summary ul {
+  margin: 0.3rem 0 0;
+  padding-left: 1.2rem;
+  color: #4b5563;
+}
+
+.role-skill-summary li + li {
+  margin-top: 0.2rem;
+}
+
+.empty-cell {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.error-message {
+  color: #b91c1c;
+}
+
+@media (max-width: 600px) {
+  .roles-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
