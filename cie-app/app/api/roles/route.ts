@@ -4,7 +4,6 @@ type RoleWithSkillsRow = {
   id: number;
   name: string;
   description: string;
-  requirements: string;
   created_at: string;
   skill_id: string | null;
   skill_name: string | null;
@@ -16,7 +15,7 @@ export async function GET() {
   const db = getDatabase();
   const { results } = await db
     .prepare(`
-      SELECT roles.id, roles.name, roles.description, roles.requirements, roles.created_at,
+      SELECT roles.id, roles.name, roles.description, roles.created_at,
         skills.id AS skill_id, skills.name AS skill_name,
         competencies.id AS competency_id,
         competencies.description AS competency_description
@@ -33,7 +32,6 @@ export async function GET() {
     id: number;
     name: string;
     description: string;
-    requirements: string;
     created_at: string;
     skills: Array<{
       id: string;
@@ -48,7 +46,6 @@ export async function GET() {
         id: row.id,
         name: row.name,
         description: row.description,
-        requirements: row.requirements,
         created_at: row.created_at,
         skills: [],
       });
@@ -83,19 +80,18 @@ export async function POST(request: Request) {
   const body = await request.json() as {
     name: string;
     description: string;
-    requirements: string;
   };
 
   console.log("Request body parsed: ", body);
 
-  const { name, description, requirements } = body;
+  const { name, description } = body;
 
   const result = await db
     .prepare(`
-      INSERT INTO roles (name, description, requirements)
-      VALUES (?, ?, ?)
+      INSERT INTO roles (name, description)
+      VALUES (?, ?)
     `)
-    .bind(name, description, requirements)
+    .bind(name, description)
     .run();
   
   console.log("Insert result: ", result);
@@ -112,7 +108,6 @@ export async function PUT(request: Request) {
     id?: number;
     name?: string;
     description?: string;
-    requirements?: string;
   };
 
   const id = Number(body.id);
@@ -128,13 +123,12 @@ export async function PUT(request: Request) {
   const result = await db
     .prepare(`
       UPDATE roles
-      SET name = ?, description = ?, requirements = ?
+      SET name = ?, description = ?
       WHERE id = ?
     `)
     .bind(
       name,
       body.description?.trim() ?? "",
-      body.requirements?.trim() ?? "",
       id,
     )
     .run();
@@ -143,5 +137,23 @@ export async function PUT(request: Request) {
     return Response.json({ error: "Role not found." }, { status: 404 });
   }
 
+  return Response.json({ success: true });
+}
+
+export async function DELETE(request: Request) {
+  const id = Number(new URL(request.url).searchParams.get("id"));
+  if (!Number.isSafeInteger(id) || id <= 0) {
+    return Response.json({ error: "A valid role id is required." }, { status: 400 });
+  }
+
+  // Foreign keys cascade the deletion to skills and competencies.
+  const result = await getDatabase()
+    .prepare("DELETE FROM roles WHERE id = ?")
+    .bind(id)
+    .run();
+
+  if (!result.meta.changes) {
+    return Response.json({ error: "Role not found." }, { status: 404 });
+  }
   return Response.json({ success: true });
 }

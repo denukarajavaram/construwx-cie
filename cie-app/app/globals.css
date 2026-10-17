@@ -1,9 +1,35 @@
 @import "tailwindcss";
 
+* { box-sizing: border-box; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 650; letter-spacing: -0.04em; }
+h2 { font-weight: 600; }
+a, button { transition: background 160ms ease, color 160ms ease; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid #F0A3D3; outline-offset: 4px; }
+.brand { display: inline-block; font-size: 1.65rem; font-weight: 750; letter-spacing: -0.06em; text-decoration: none; }
+.brand span { color: #F0A3D3; }
+.welcome-page { min-height: 100svh; padding: 2rem max(1.5rem, calc((100% - 1100px) / 2)); }
+.welcome-title { margin: 0; font-size: 1rem; font-weight: 500; letter-spacing: 0; }
+.login-options { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin: 3rem auto 0; }
+.login-button { display: flex; align-items: center; justify-content: center; width: min(240px, 100%); min-height: 64px; padding: 1rem; border: 3px solid #050505; border-radius: 1.25rem; background: #F0A3D3; color: #21151e; text-decoration: none; font-weight: 500; }
+.login-button:hover { background: #f6bddf; }
+.workspace-nav { max-width: 1164px; margin: auto; padding: 1.5rem 2rem; border-bottom: 1px solid #332d38; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.workspace-nav nav { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.875rem; }
+.workspace-nav nav a, .form-page-header > a, .role-form-actions > a { color: #F0A3D3; text-underline-offset: 4px; }
+.user-page { min-height: 100svh; padding: 2rem; max-width: 1160px; margin: auto; }
+.user-page section { padding: 5rem 0; }
+.user-page section a { color: #F0A3D3; }
+@media (max-width: 600px) {
+  .welcome-page { padding: 1.5rem; }
+
+  .workspace-nav { align-items: flex-start; flex-direction: column; padding: 1.5rem 1rem; }
+  .workspace-nav nav { gap: 1rem; }
+  .competencies-heading { align-items: flex-start; flex-direction: column; gap: 0.35rem; }
+}
+
 :root {
-  color-scheme: light;
-  background: #fcfbfc;
-  color: #111827;
+  color-scheme: dark;
+  background: #101014;
+  color: #f5f2f5;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -37,15 +63,15 @@ a {
 
 .roles-header p {
   margin-top: 0.4rem;
-  color: #6b7280;
+  color: #aaa3af;
 }
 
 .add-role-link {
   flex-shrink: 0;
   padding: 0.7rem 1rem;
   border-radius: 0.5rem;
-  background: #680c5a;
-  color: rgb(0, 0, 0);
+  background: #F0A3D3;
+  color: #21151e;
   text-decoration: none;
   font-weight: 600;
 }
@@ -53,15 +79,15 @@ a {
 .edit-role-link {
   display: inline-block;
   padding: 0.45rem 0.75rem;
-  border: 1px solid #680c5a;
+  border: 1px solid #F0A3D3;
   border-radius: 0.45rem;
-  color: #680c5a;
+  color: #F0A3D3;
   text-decoration: none;
   font-weight: 600;
 }
 
 .edit-role-link:hover {
-  background: #f8eef6;
+  background: #30212d;
 }
 
 .role-form-page {
@@ -83,8 +109,12 @@ a {
 
 .role-form input,
 .role-form textarea {
+  width: 100%;
+  min-width: 0;
+  background: #121015;
+  color: #f5f2f5;
   padding: 0.75rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #403846;
   border-radius: 0.5rem;
   font: inherit;
 }
@@ -104,8 +134,8 @@ a {
   padding: 0.7rem 1rem;
   border: 0;
   border-radius: 0.5rem;
-  background: #680c5a;
-  color: white;
+  background: #F0A3D3;
+  color: #21151e;
   font: inherit;
   font-weight: 600;
   cursor: pointer;
@@ -143,23 +173,23 @@ a {
 .section-heading p,
 .competencies-heading span {
   margin-top: 0.35rem;
-  color: #6b7280;
+  color: #aaa3af;
 }
 
 .form-section {
   display: grid;
   gap: 1.25rem;
   padding: 1.5rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #332d38;
   border-radius: 0.75rem;
-  background: white;
+  background: #1a171e;
 }
 
 .role-form .secondary-button,
 .role-form .add-competency-button {
-  border: 1px solid #680c5a;
-  background: white;
-  color: #680c5a;
+  border: 1px solid #F0A3D3;
+  background: #1a171e;
+  color: #F0A3D3;
 }
 
 .role-form .add-skill-button {
@@ -178,13 +208,13 @@ a {
   display: grid;
   gap: 1rem;
   padding: 1.25rem;
-  border: 1px solid #ddd6e0;
+  border: 1px solid #403546;
   border-radius: 0.65rem;
-  background: #fcf9fb;
+  background: #201b24;
 }
 
 .skill-number {
-  color: #680c5a;
+  color: #F0A3D3;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -195,7 +225,7 @@ a {
 .role-form .icon-button {
   padding: 0;
   background: transparent;
-  color: #b91c1c;
+  color: #ff9fae;
 }
 
 .role-form .danger-link {
@@ -222,7 +252,7 @@ a {
 
 .empty-skills {
   padding: 2rem;
-  border: 1px dashed #c4b5c0;
+  border: 1px dashed #66536a;
   border-radius: 0.65rem;
   text-align: center;
 }
@@ -246,27 +276,27 @@ a {
 
 .table-wrapper {
   overflow-x: auto;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #332d38;
   border-radius: 0.75rem;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  background: #1a171e;
 }
 
 th,
 td {
   padding: 0.9rem 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #332d38;
   text-align: left;
   vertical-align: top;
 }
 
 th {
-  background: #f9fafb;
-  color: #374151;
+  background: #242029;
+  color: #e6dce8;
 }
 
 tbody tr:last-child td {
@@ -282,7 +312,7 @@ tbody tr:last-child td {
 .role-skill-summary ul {
   margin: 0.3rem 0 0;
   padding-left: 1.2rem;
-  color: #4b5563;
+  color: #bdb3c2;
 }
 
 .role-skill-summary li + li {
@@ -290,12 +320,12 @@ tbody tr:last-child td {
 }
 
 .empty-cell {
-  color: #6b7280;
+  color: #aaa3af;
   font-style: italic;
 }
 
 .error-message {
-  color: #b91c1c;
+  color: #ff9fae;
 }
 
 @media (max-width: 600px) {
@@ -304,3 +334,40 @@ tbody tr:last-child td {
     flex-direction: column;
   }
 }
+
+.user-application { max-width: 520px; margin: 0 auto; }
+.user-application h1 { margin: 0 0 2rem; }
+.user-fields { display: grid; gap: 0.75rem; margin-bottom: 2rem; }
+.user-fields label { font-weight: 600; }
+.user-fields input, .user-fields select { width: 100%; min-width: 0; padding: 0.85rem; border: 1px solid #403846; border-radius: 0.5rem; background: #1a171e; color: #f5f2f5; font: inherit; }
+.user-fields select:focus-visible { outline: 2px solid #F0A3D3; outline-offset: 4px; }
+.user-fields input::file-selector-button { margin-right: 1rem; padding: 0.6rem 0.85rem; border: 0; border-radius: 0.4rem; background: #F0A3D3; color: #21151e; font: inherit; cursor: pointer; }
+.user-fields .field-help { margin: 0; color: #aaa3af; font-size: 0.85rem; overflow-wrap: anywhere; }
+.user-fields label[for="role"] { margin-top: 1.25rem; }
+.user-fields select:disabled { opacity: 0.65; }
+
+.role-row-actions { display: flex; align-items: center; gap: 0.6rem; }
+.delete-role-button { padding: 0.45rem 0.75rem; border: 1px solid #F0A3D3; border-radius: 0.45rem; background: #F0A3D3; color: #21151e; font: inherit; font-weight: 600; cursor: pointer; }
+.delete-role-button:hover:not(:disabled) { background: #f6bddf; }
+.delete-role-button:disabled { opacity: 0.65; cursor: wait; }
+
+.analyze-button { padding: 0.85rem 1rem; border: 0; border-radius: 0.5rem; background: #F0A3D3; color: #21151e; font: inherit; font-weight: 600; cursor: pointer; }
+.analyze-button:hover:not(:disabled) { background: #f6bddf; }
+.analyze-button:disabled { opacity: 0.6; cursor: not-allowed; }
+.user-page .analysis-results { padding: 1.5rem 0 2.5rem; border-top: 1px solid #403846; }
+.analysis-results h2 { margin: 0; font-size: 1.4rem; }
+.analysis-results .field-help { color: #aaa3af; font-size: 0.85rem; line-height: 1.6; }
+.match-score { margin: 1rem 0; color: #F0A3D3; font-size: 2.75rem; font-weight: 650; }
+.match-score span { font-size: 1rem; color: #f5f2f5; font-weight: 400; }
+.analysis-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0; }
+.analysis-filters button { padding: 0.45rem 0.7rem; border: 1px solid #403846; border-radius: 0.5rem; background: #1a171e; color: #f5f2f5; font: inherit; font-size: 0.8rem; cursor: pointer; }
+.analysis-filters button[aria-pressed="true"] { background: #F0A3D3; color: #21151e; border-color: #F0A3D3; }
+.analysis-items { display: grid; gap: 1rem; }
+.analysis-item { padding: 1.25rem; border: 1px solid #403846; border-radius: 0.65rem; background: #1a171e; overflow-wrap: anywhere; }
+.analysis-skill { color: #aaa3af; font-size: 0.8rem; }
+.analysis-item h3 { margin: 0.35rem 0 0.75rem; font-size: 1rem; font-weight: 600; }
+.analysis-item p { margin: 0.75rem 0 0; color: #c8becd; font-size: 0.9rem; line-height: 1.6; }
+.analysis-status { display: inline-block; font-size: 0.75rem; border-radius: 0.3rem; padding: 0.25rem 0.5rem; }
+.status-matched { background: #1d362a; color: #a3e8bb; }
+.status-partial { background: #3b3020; color: #f0d394; }
+.status-missing { background: #3a2334; color: #F0A3D3; }

@@ -5,6 +5,7 @@
   "packageManager": "npm",
   "dependencies": {
     "@vinext/cloudflare": "latest",
+    "openai": "^7.36.0",
     "react": "latest",
     "react-dom": "latest",
     "react-server-dom-webpack": "latest",
@@ -25,6 +26,7 @@
   },
   "type": "module",
   "scripts": {
+    "test:ai": "node --experimental-vm-modules --test tests/ai.test.mjs",
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",

@@ -1,5 +1,40 @@
 # vinext app
 
+## Resume analysis
+
+The User page sends a PDF resume (maximum 5 MB) and selected role to
+`POST /api/analyze-resume`. It reads the role's skills and competencies from
+D1 and calls OpenAI Responses with `gpt-4.1-mini`, strict Structured Outputs,
+and `store: false`. Files are sent inline, so no OpenAI Files objects need
+cleanup. Conskill does not persist resumes or results. OpenAI's own data
+retention policies still apply.
+
+For local use, copy `.dev.vars.example` to `.dev.vars` and replace the
+placeholder with your OpenAI API key. Do not commit `.dev.vars`. Restart the
+development server after setting it. For deployment, set the Worker secret
+from this directory with `npx.cmd wrangler secret put OPENAI_API_KEY`.
+Never put the key in client code. Without a key, the endpoint returns 503
+with a configuration message.
+
+The `RESUME_RATE_LIMITER` binding allows 3 requests per minute per client IP
+per Cloudflare location. This is basic abuse protection, not a global spend
+cap. Local requests share the `local` key. Unsupported Word files must be
+exported to PDF for this MVP. Unreadable files and roles without skills
+return actionable errors. At most 100 requirements can be analyzed at once.
+
+The backend counts each competency once (or the skill itself when it has
+no competencies), awarding 1 for demonstrated, 0.5 for partial, and 0 for
+not demonstrated. Duplicate, missing, or unknown requirement IDs invalidate
+the response. The percentage measures documented resume evidence, not
+hiring eligibility. Results remain in page state and clear when inputs change.
+
+Run `npm.cmd run test:ai` for deterministic scoring, upload validation, and
+mocked-provider endpoint checks. These tests do not send resumes to OpenAI.
+
+References: [OpenAI file inputs](https://developers.openai.com/api/docs/guides/file-inputs),
+[Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs),
+[Cloudflare rate limiting](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/).
+
 This project was created with create-vinext-app.
 
 ## Scripts
